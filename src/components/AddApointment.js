@@ -1,13 +1,18 @@
-import {BiCalendarPlus} from 'react-icons/bi'
+import { useState } from 'react';
+import {BiCalendarPlus} from 'react-icons/bi';
 
+// || && 연산자 => 출력값
+// () => {} 함수형, 함수형 => () => {}
+// 컴포넌트 나누기
+// 함수명, 이름없는 함수 변수 -> react , component JSX
 
-function AddApointment() {
+function AddWrite({toggleForm}){
+  if(!toggleForm){
+    return null;
+  }
   return (
-    <div id="appoint">
-      <h4>
-        <BiCalendarPlus />
-        예약하기</h4>
-      <ul>
+    <>
+    <ul>
         <li>
           <label htmlFor="userName">집사명</label>
           <input type="text" id="userName" />
@@ -32,6 +37,21 @@ function AddApointment() {
       <p>
           <button type="submit">예약하기</button>
         </p>
+    </>
+  )
+}
+
+function AddApointment() {
+  // state
+const [toggleForm,setToggleForm] = useState(false)
+
+  return (
+    <div id="appoint">
+      <h4 onClick={() => {setToggleForm(!toggleForm)}}>
+        <BiCalendarPlus />
+        예약하기</h4>
+      <AddWrite 
+        toggleForm = {toggleForm}/>
     </div>
   );
 }

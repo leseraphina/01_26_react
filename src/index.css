@@ -61,19 +61,19 @@ article>h3{
   margin-bottom : 20px;
   border:1px solid #005291;
 }
-#search>p{
+#search>div{
   display:block;
   align-items:center;
   padding:0 20px;
   position:relative;
 }
-#search>p>input{
+#search>div>input{
   width:80%;
   border:#005291;
   line-height:25px;
   text-indent:20px;
 }
-#search>p>button{
+#search>div>button{
   position:absolute;
   right:0; top:0%;
   border:none;
@@ -82,30 +82,60 @@ article>h3{
   height:100%;
   font-size:25px;
 }
-#search>p>ul{
+#search>div>ul{
   position: absolute;
   right: 1px;top: 27px;
   width:20%;
   padding: 10px;
   background-color:#fff;
   border:1px solid #005291;
+  z-index:100;
 }
-#search>p>ul>li{
+#search>div>ul>li{
   padding: 10px;
   border-bottom:1px solid #005291;
 }
-#search>p>ul>li:last-child{
+#search>div>ul>li:last-child{
   border-bottom:none;
 }
 #list{
   padding:0 20px;
 }
-#list ul{}
+#list ul{
+
+}
 #list ul>li{
   border-bottom:1px solid #005291;
   display:flex;
   flex-direction:row-reverse;
   padding:20px 0;
   justify-content:space-between;
+}
+#list ul>li>dl{
+  width:80%;
+  position:relative;
+}
+#list ul>li>dl>dt{
+  font-size:23px;
+  color:#005291;
+  margin-bottom:10px;
+}
+#list ul>li>dl>dd>dfn{
+  font-size:19px;
+  padding-right:10px;
+  margin-bottom:10px;
+  color:#005291;
+}
+
+#list ul>li>dl>dd.date{
+  position:absolute;
+  right:0; top:0;
+}
+#list ul>li>button{
+  width:60px; height:60px;
+  background-color:#9a0404;
+  color:#fff;
+  border:none;
+  font-size:25px;
 }
 

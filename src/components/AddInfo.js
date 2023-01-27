@@ -1,20 +1,22 @@
 import { BiTrash } from "react-icons/bi";
 
-function AddInfo() {
+function AddInfo({appointment,onDelectAppoint}) {
   return (
     <li>
       <dl>
-        <dt>애기이름</dt>
+        <dt>{appointment.petName}</dt>
         <dd>
           <dfn>예약자명</dfn>
-          예약자명데이터
+          {appointment.ownerName}
         </dd>
-        <dd>
-          설명
+        <dd className="desc">
+          {appointment.aptNotes}
         </dd>
-        <dd>날짜 - 시간</dd>
+        <dd className="date">{appointment.aptDate}</dd>
       </dl>
-      <button type="button"><BiTrash /></button>
+      <button 
+      type="button"
+      onClick={() => onDelectAppoint(appointment.id)}><BiTrash /></button>
     </li>
   );
 }
