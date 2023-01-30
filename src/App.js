@@ -8,6 +8,22 @@ import { useCallback, useEffect, useState } from 'react';
 function App() {
 // data state
 const [appointList,setAppointList] = useState([]);
+const [query,setQuery] = useState('');
+const [sortBy,setSortBy] = useState('petName');
+
+const filterAppointments = appointList.filter(
+  item => {
+    return (
+      item.petName.toLowerCase().includes(query.toLowerCase()) ||
+      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+      item.aptNotes.toLowerCase().includes(query.toLowerCase()) 
+    )
+  }
+).sort(
+  (a,b) => {
+    return (a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 : 1 )
+  }
+)
 
 const fetchData = useCallback(
   () => {
@@ -21,17 +37,29 @@ useEffect(
 )
 // network -> 무한반복 -> soures -> pause
   return (
-   
+  //  40 - 55 분
     <article>
       <h3>
         <BiArch />
         예약시스템
         </h3>
-      <AddApointment />
-      <Search />
+      <AddApointment 
+         onSendAppointment = {
+          myAppointment => setAppointList([...appointList,myAppointment])
+         }
+         lastId={
+          appointList.reduce((max, item) => Number(item.id) > max ? Number(item.id) : max,0)
+         }
+         />
+      <Search 
+        query = {query}
+        onQueryChange = {(myQuery) => setQuery(myQuery)}
+        sortBy = {sortBy}
+        onSortChange = {(mySortBy) => setSortBy(mySortBy)}
+        />
       <div id="list">
         <ul>
-         {appointList.map(
+         {filterAppointments.map(
           (appointment) =>
               ( <AddInfo  
                 key={appointment.id} 
@@ -41,7 +69,7 @@ useEffect(
                 }
                 />)
          )
-          }
+         }
         </ul>
       </div>
     </article>
